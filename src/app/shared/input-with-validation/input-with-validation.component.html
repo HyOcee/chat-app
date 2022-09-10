@@ -1,0 +1,28 @@
+<div class="">
+    <input 
+        [type]="type" 
+        [placeholder]="placeholder"
+        [class]="class"
+        [required] = "required"
+        [readonly] = "readonly"
+        [formControl] = "control"
+        [ngClass]="{'is-invalid': invalid}"
+        [value]="value"
+    >
+    </div>
+    
+    <ng-container>
+      <small class="text-red-500 mt-1" [class.hidden]= "control.valid || control.untouched" *ngIf = "control.errors?.['required']">
+        {{errorMessage}}
+      </small>
+    
+      <small class="text-red-500 mt-1" *ngIf = "control.errors?.['minlength']">
+    
+        This must be at least {{control.errors?.['minlength'].requiredLength}}
+    
+      </small>
+      <small class="text-red-500" *ngIf="control.errors?.['pattern']">
+       It must be a number and must be up to 11 digit
+      </small>
+    </ng-container>
+    

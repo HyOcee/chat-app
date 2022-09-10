@@ -1,0 +1,39 @@
+<div class="relative ">
+    <div class="p-3 sm:py-6 h-screen max-h-[1000px] grid-rows-[auto_auto_1fr]">
+        <nav class="grid grid-cols-[1fr_auto_auto_auto] py-2">
+            <div class="">
+                <div class="flex gap-4 items-center cursor-pointer w-fit" (click)="showProfile()">
+                    <div class="w-[50px] h-[50px] bg-slate-600 rounded-full"></div>
+                    <span class="flex-1 text-ellipsis overflow-hidden ...">@{{userInfo?.username}}</span>
+                </div>
+            </div>
+    
+            <button class="w-[30px] flex justify-center items-center">
+                <!-- <img src="assets/images/searchIcon.svg" alt=""> -->
+            </button>
+            <button class="w-[30px] flex justify-center items-center">
+                <!-- <img src="assets/images/searchIcon.svg" alt=""> -->
+            </button>
+            <button class="w-[30px] flex justify-center items-center">
+                <!-- <img src="assets/images/searchIcon.svg" alt=""> -->
+            </button>
+        </nav>
+    
+        <div class="relative my-4">
+            <img src="assets/images/searchIcon.svg"
+                 class="absolute top-[50%] left-[10px] -translate-y-[50%]" alt="">
+            <input type="text" placeholder="Search Chat"
+                class="pl-8 pr-2 py-2 w-full outline-0 border-stone-400 border border-solid rounded-lg">
+        </div>
+    
+        <div class="overflow-y-auto custom-scrollbar h-calc">
+            <app-chat-head *ngFor="let chat of chats" [chat]="chat"></app-chat-head>
+        </div>
+    </div>
+    
+    <!-- display profile above others -->
+    <div [class.showProfile]="showUserProfile" 
+        class="animate-me absolute left-0 right-0 top-0 bottom-0 profile">
+        <app-profile></app-profile>
+    </div>
+</div>

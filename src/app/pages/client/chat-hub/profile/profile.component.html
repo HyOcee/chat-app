@@ -1,0 +1,8 @@
+<div class="p-6 h-screen flex justify-center items-center min-h-[600px] bg-stone-600">
+    <div class="max-w-[400px] w-full relative h-full max-h-[700px]">
+        <img class="cursor-pointer" src="assets/images/closeIconX.svg" (click)="closeProfileView()" alt="">
+        <div class="rounded-full mb-6 w-[150px] bg-white mx-auto h-[150px]"></div>
+        <div class="text-4xl text-white text-center">{{(userInfo.firstName + ' ' + userInfo.lastName) | titlecase}}</div>
+        <div class="text-2xl text-center text-white mt-2">@{{userInfo.username | lowercase}}</div>
+    </div>
+</div>

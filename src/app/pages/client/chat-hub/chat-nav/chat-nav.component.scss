@@ -1,0 +1,26 @@
+.h-calc {
+    height: calc(100vh - 220px);
+}
+
+@media screen and (min-width: 760px) {
+    .h-calc {
+        height: calc(100vh - 184px);
+    }
+}
+
+@media screen and (max-width: 760px) {
+    .h-screen {
+        height: calc(100vh - 50px);
+    }
+}
+
+.animate-me {
+    animation-name: animate;
+    animation-duration: 1s;
+    transition: 0.5s;
+    transform: translateX(-120%);
+}
+
+.showProfile {
+    transform: translateX(0);
+}

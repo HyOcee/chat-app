@@ -1,0 +1,103 @@
+<div *ngIf="receiverInfo" class="grid grid-rows-[auto_1fr_auto] bg-slate-50 w-full h-full">
+    <div class="px-4 py-3 flex bg-primary 
+            text-white gap-[8px] w-full items-center border-b">
+        <img class="cursor-pointer" src="assets/images/closeIconX.svg" (click)="closeChat()" alt="">
+        <div class="rounded-full h-[40px] w-[40px] chat-img bg-slate-500">
+            <!-- profile pic -->
+        </div>
+        <div class="flex-1 text-slate-700">
+            <div class="font-medium text-base"> {{(receiverInfo.firstName + ' ' + receiverInfo.lastName) | titlecase}} </div>
+            <div class="italic text-xs">Active</div>
+        </div>
+    </div>
+
+    <div #scrollMe class="messages custom-scrollbar overflow-y-auto py-2 custom-scrollbar">
+        <div class="flex flex-col px-6 py-6">
+            <div *ngFor="let message of displayedMessages"
+                class="flex flex-col w-fit max-w-[66.6%] break-all" [ngClass]="{
+                   'self-start': message?.sender?.toLowerCase() != senderUsername, 
+                   'self-end': message?.sender?.toLowerCase() == senderUsername
+               }">
+
+                <div class="rounded-[10px] p-6" [ngClass]="{
+                       'speech-bubble-receiver bg-[#EAEAF0]': message?.sender?.toLowerCase() != senderUsername, 
+                       'speech-bubble-sender bg-[#C8C8DC]': message?.sender?.toLowerCase() == senderUsername
+                   }">
+                   <div>{{message?.content}}</div>
+                </div>
+
+                <div class="py-2 text-xs"
+                    [ngClass]="{'self-end': message.sender?.toLowerCase() != senderUsername, 'self-start': message.sender?.toLowerCase() == senderUsername}">
+                    {{message?.timeStamp | date:'shortTime' }}
+                </div>
+            </div>
+        </div>
+
+        <div *ngIf="displayedNewMessages.length" class="new-message">
+            <div></div>
+            <div class="message text-primary">New Message</div>
+            <div></div>
+        </div>
+
+        <div class="flex flex-col px-6 py-6">
+            <div *ngFor="let message of displayedNewMessages"
+                class="flex flex-col w-fit max-w-[66.6%] break-all" [ngClass]="{
+                   'self-start': message?.sender?.toLowerCase() != senderUsername, 
+                   'self-end': message?.sender?.toLowerCase() == senderUsername
+               }">
+
+                <div class="rounded-[10px] p-6" [ngClass]="{
+                       'speech-bubble-receiver bg-[#EAEAF0]': message?.sender?.toLowerCase() != senderUsername, 
+                       'speech-bubble-sender bg-[#C8C8DC]': message?.sender?.toLowerCase() == senderUsername
+                   }">
+                   <div>{{message?.content}}</div>
+                </div>
+
+                <div class="py-2 text-xs"
+                    [ngClass]="{'self-end': message.sender?.toLowerCase() != senderUsername, 'self-start': message.sender?.toLowerCase() == senderUsername}">
+                    {{message?.timeStamp | date:'shortTime' }}
+                </div>
+            </div>
+        </div>
+
+        <div class="flex flex-col px-6 py-6">
+            <div *ngFor="let message of freshMessages"
+                class="flex flex-col w-fit max-w-[66.6%] break-all" [ngClass]="{
+                   'self-start': message?.sender?.toLowerCase() != senderUsername, 
+                   'self-end': message?.sender?.toLowerCase() == senderUsername
+               }">
+
+                <div class="rounded-[10px] p-6" [ngClass]="{
+                       'speech-bubble-receiver bg-[#EAEAF0]': message?.sender?.toLowerCase() != senderUsername, 
+                       'speech-bubble-sender bg-[#C8C8DC]': message?.sender?.toLowerCase() == senderUsername
+                   }">
+                   <div>{{message?.content}}</div>
+                </div>
+
+                <div class="py-2 text-xs"
+                    [ngClass]="{'self-end': message.sender?.toLowerCase() != senderUsername, 'self-start': message.sender?.toLowerCase() == senderUsername}">
+                    {{message?.timeStamp | date:'shortTime' }}
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <form [formGroup]="sendMessageForm" (ngSubmit)="sendMessage()" 
+        class="px-4 py-5 items-center grid gap-[30px] grid-cols-[auto_1fr_auto]">
+        <button class="w-[30px] h-[30px] rounded-full bg-slate-400">
+            <img src="assets/images/paper-clip-icon.svg" alt="">
+        </button>
+
+        <input class="w-full bg-primary bg-opacity-5 rounded-md border-0 outline-none 
+            placeholder:text-body-2 text-sm font-light p-3" 
+            formControlName="messageComposed" type="text" placeholder="Write a message">
+
+        <button class="w-[30px] h-[30px] rounded-full bg-slate-400"><img src="assets/images/send-icon.svg" alt=""></button>
+
+        <!-- file upload input fields hidden -->
+        <input #attachments type="file" 
+            (click)="attachments.value" (change)="importFile($event)" 
+            style="display:none" accept="image/*, video/*, audio/*">
+    </form>
+
+</div>

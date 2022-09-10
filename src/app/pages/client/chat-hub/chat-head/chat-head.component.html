@@ -1,0 +1,17 @@
+<div (click)="openChat()" 
+    class="cursor-pointer px-2 py-2 grid grid-cols-[auto_1fr_auto] items-center relative"
+    [ngClass]="{'bg-stone-600': chatIsActive}">
+    <div class="w-[35px] h-[35px] rounded-full bg-slate-700 ">
+
+    </div>
+
+    <div class="pl-[20px] text-xs text-stone-800 text-ellipsis overflow-hidden ...">
+        @{{chat.username}}
+    </div>
+
+    <div *ngIf="!chatIsActive && chat.newMessageCount"
+         class="bg-slate-400 w-[20px] h-[20px] rounded-full absolute text-xs
+             text-stone-800  right-[5%] top-1 flex justify-center items-center">
+        {{chat.newMessageCount}}
+    </div>
+</div>

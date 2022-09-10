@@ -1,0 +1,33 @@
+<div class="p-6 min-h-screen bg-stone-600">
+    <div class="mx-auto max-w-[400px] relative">
+        <div class="text-4xl cursor-pointer w-fit" routerLink="/">cHaT</div>
+        <div class="bg-img h-[250px]"></div> 
+        
+        <form [formGroup]="signupForm" (ngSubmit)="signup()"
+            class="grid gap-4 w-full md:mt-4" 
+            >
+            <app-input-with-validation [control]="$any(signupForm.get('firstName'))"
+                [class]="'w-full outline-0 px-4 py-2 md:py-3 rounded-lg bg-stone-300'"
+                [type]="'text'" [placeholder]="'First Name'"
+            ></app-input-with-validation>
+            <app-input-with-validation [control]="$any(signupForm.get('lastName'))"
+                [class]="'w-full outline-0 px-4 py-2 md:py-3 rounded-lg bg-stone-300'"
+                [type]="'text'" [placeholder]="'Last Name'"
+            ></app-input-with-validation>
+            <app-input-with-validation [control]="$any(signupForm.get('username'))"
+                [class]="'w-full outline-0 px-4 py-2 md:py-3 rounded-lg bg-stone-300'"
+                [type]="'text'" [placeholder]="'username'"
+            ></app-input-with-validation>
+            <app-input-with-validation [control]="$any(signupForm.get('password'))"
+                [class]="'w-full outline-0 px-4 py-2 md:py-3 rounded-lg bg-stone-300'"
+                [type]="'password'" [placeholder]="'password'"
+            ></app-input-with-validation>
+
+            <button class="block mx-auto px-4 py-2 mt-6 bg-stone-800 text-white rounded-lg">Get Started</button>
+        </form>
+        
+        <div class="w-fit right-0 top-0 absolute">
+            <div routerLink="/auth/login" class="cursor-pointer underline">Log In</div>
+        </div>
+    </div>
+</div>
